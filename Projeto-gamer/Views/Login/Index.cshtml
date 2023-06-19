@@ -1,0 +1,80 @@
+@* Fazer a tela de login *@
+
+@model Jogador;
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamer</title>
+    <link rel="stylesheet" href="./css/reset-and-basics.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="~/css/login.css">
+</head>
+
+<body>
+
+    <!-- FORMULÁRIO DE LOGIN -->
+
+    <main class="fundo-login">
+        <div class="bkg-login">
+            <form class="frm-login" method="post" action="@Url.Action("Logar")">
+                <div class="login-title">
+                    <hr class="login-line">
+                    <h1>Login</h1>
+                </div>
+                <div class="frm-linha">
+                    <div class="bkg-input">
+                        <img src="~/assets/vector-user.svg" alt="ícone de usuário">
+                        <input type="email" name="Email" placeholder="Digite seu e-mail:" required>
+                    </div>
+                </div>
+                <div class="frm-linha">
+                    <div class="bkg-input">
+                        <img src="~/assets/vector-key.svg" alt="ícone de chave">
+                        <input type="password" name="Senha" placeholder="Digite sua senha:" required>
+                    </div>
+                </div>
+
+                <button class="btn-logar" type="submit">Logar</button>
+                <br>
+                <h3>
+                    @TempData.Peek("Message")
+                </h3>
+            </form>
+        </div>
+
+    </main>
+
+
+</body>
+
+</html>
+
+
+
+
+
+@*
+<h1>Tela de Login</h1>
+
+<h2>
+@TempData.Peek("Message")
+</h2>
+
+<form method="post" action="@Url.Action("Logar")">
+
+<label for=""> Email </label>
+<input type="email" name="Email" required>
+
+<label for="">Senha</label>
+<input type="senha" name="Senha" required>
+
+<button type="submit"> Logar </button>
+</form> *@

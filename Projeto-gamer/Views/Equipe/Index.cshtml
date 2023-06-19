@@ -1,0 +1,166 @@
+@model Equipe
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipes</title>
+    <link rel="stylesheet" href="./css/reset-and-basics.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="~/css/equipes.css">
+    <link rel="stylesheet" href="./css/footer.css">
+
+</head>
+
+<body>
+    <main>
+
+
+
+        @if (ViewBag.UserName == null)
+        {
+            <a class="navbar-brand" asp-area="" asp-controller="Login" asp-action="Index">
+                Login
+            </a>
+        }
+        else
+        {
+            <section class="container-grid cadastro-equipes">
+
+
+                <form class="frm-cad-equipe" method="post" action='@Url.Action("Cadastrar")' enctype="multipart/form-data">
+                    <div class="cadequipe-titulo" class="form-group">
+                        <h1>Cadastro de Equipes</h1>
+                        <hr>
+                    </div>
+
+                    @* <input class="campo-entrada" type="number" id="idEquipe" placeholder="Digite o Id da sua equipe:"> *@
+                    <input type="text" name="Nome" required class="campo-entrada" type="text"
+                        placeholder="Digite o nome da sua equipe:">
+                    <label class="foto" for="foto-file">
+                        Nenhuma imagem selecionada...
+                        <input type="file" id="foto-file">
+                    </label>
+
+                    <button type="submit" value="Upload" class="btn btn-primary">Cadastro</button>
+
+                    @* <div class="form-group" class="equipeid" id="equipeid">
+                <label for="">Imagem</label>
+                <input type="file" name="Imagem">
+                </div> *@
+
+
+                    @* <!-- <select class="equipeid" id="equipeid">
+                <option value="">Selecione uma Equipe</option>
+                <option value="x">Equipe X</option>
+                <option value="y">Equipe Y</option>
+                </select> --> *@
+                </form>
+
+                @* <!-- TABELA CADASTRO DE EQUIPES --> *@
+
+                <table class="table table-striped table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nome</th>
+                            <th>Foto</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @* Não sei que está acontecendo aqui *@
+                        @foreach (Equipe equipe in ViewBag.Equipe)
+                        {
+                            <tr>
+                                <td>@equipe.IdEquipe</td>
+                                <td>@equipe.Nome</td>
+                                <td> <img src="/img/Equipes/@equipe.Imagem" alt="Imagem da @equipe.Nome" width="50px"> </td>
+                                <td>
+                                    <a id="separete" asp-area="" asp-controller="Equipe" asp-action="Excluir"
+                                        asp-route-id="@equipe.IdEquipe">
+                                        <img class="yellow-trash" src="~/assets/trash.png" alt="">
+                                    </a>
+                                    <a id="edit-edit" asp-area="" asp-controller="Equipe" asp-action="Editar"
+                                        asp-route-id="@equipe.IdEquipe">
+                                        <img id="edit-edit" src="~/assets/edit.svg" alt="">
+                                    </a>
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </section>
+        }
+
+
+    </main>
+
+</body>
+
+@{
+    ViewData["Title"] = "Equipe";
+}
+
+@* <h1>Tela de Equipes</h1>
+
+@if (ViewBag.UserName == null)
+{
+<a class="navbar-brand" asp-area="" asp-controller="Login" asp-action="Index">
+Login
+</a>
+}
+else
+{
+<form method="post" action='@Url.Action("Cadastrar")' enctype="multipart/form-data">
+<div class="form-group">
+<label for="">Nome</label>
+<input type="text" name="Nome" required>
+</div>
+
+<div class="form-group">
+<label for="">Imagem</label>
+<input type="file" name="Imagem">
+</div>
+
+<button type="submit" value="Upload" class="btn btn-primary">Cadastrar</button>
+</form>
+
+<table class="table table-striped table-responsive">
+<thead>
+<th>ID</th>
+<th>Nome</th>
+<th>Imagem</th>
+<th>Ações</th>
+</thead>
+
+<tbody>
+@* Não sei que está acontecendo aqui *@
+@* @foreach (Equipe equipe in ViewBag.Equipe)
+{
+<tr>
+<td>@equipe.IdEquipe</td>
+<td>@equipe.Nome</td>
+<td> <img src="/img/Equipes/@equipe.Imagem" alt="Imagem da @equipe.Nome" width="50px"> </td>
+<td>
+<a id="separete" asp-area="" asp-controller="Equipe" asp-action="Excluir"
+asp-route-id="@equipe.IdEquipe">
+<img class="yellow-trash" src="~/assets/trash.png" alt="">
+</a>
+<a id="edit-edit" asp-area="" asp-controller="Equipe" asp-action="Editar"
+asp-route-id="@equipe.IdEquipe">Editar</a>
+</td>
+
+</tr>
+}
+
+</tbody>
+
+</table>*@
+
+

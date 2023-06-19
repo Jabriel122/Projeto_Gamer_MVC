@@ -1,0 +1,89 @@
+@model Equipe
+
+@{
+    ViewData["Title"] = "Edit";
+
+}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipes</title>
+    <link rel="stylesheet" href="./css/reset-and-basics.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="~/css/equipes.css">
+    <link rel="stylesheet" href="./css/footer.css">
+
+</head>
+
+<body>
+    <main>
+
+
+        @if (ViewBag.UserName == null)
+        {
+            <a class="navbar-brand" asp-area="" asp-controller="Login" asp-action="Index">
+                Login
+            </a>
+        }
+        else
+        {
+            <section class="container-grid cadastro-equipes">
+
+
+                <form class="frm-cad-equipe" method="post" action="@Url.Action("Atualizar")" enctype="multipart/form-data">
+                    <div class="cadequipe-titulo">
+                        <h1> Edição de Equipe</h1>
+                        <hr>
+                    </div>
+
+                    <input class="campo-entrada" id="idEquipe" placeholder="Digite o Id da sua equipe:" type="hidden"
+                        name="IdEquipe" value="@ViewBag.Equipe.IdEquipe">
+
+                    <input type="text" name="Nome" value="@ViewBag.Equipe.Nome" class="campo-entrada" id="nome-equipe"
+                        placeholder="Digite o nome da sua equipe:">
+
+                    <label class="foto" for="foto-file">
+                        Nenhuma imagem selecionada...
+                        <input type="file" id="foto-file" name="Imagem" value="@ViewBag.Equipe.Imagem">
+                    </label>
+
+                    @* <select class="campo-entrada" id="equipe-select">
+                <input type="File" name="Imagem" value="@ViewBag.Equipe.Imagem">
+                </select> *@
+
+                    @* <input class="campo-entrada" type="text" id="nome-jogador" placeholder="Digite o nome do Jogador:">
+                <input class="campo-entrada" type="email" id="email-jogador" placeholder="Digite o Email do Jogador:">
+                <input class="campo-entrada" type="password" id="senha" placeholder="Digite a Senha:"> *@
+                    <button type="submit" value="Upload" class="btn btn-primary">Atualizar</button>
+
+                </form>
+
+            </section>
+        }
+
+
+
+
+
+    </main>
+</body>
+
+@*
+<h1></h1>
+<form method="post" action="@Url.Action("Atualizar")" enctype="multipart/form-data">
+
+
+<input type="hidden" name="IdEquipe" value="@ViewBag.Equipe.IdEquipe">
+
+<label for="">Nome</label>
+<input type="text" name="Nome" value="@ViewBag.Equipe.Nome">
+
+<label for="">Imagem</label>
+<input type="File" name="Imagem" value="@ViewBag.Equipe.Imagem">
+
+<button type="submit">Atualizar</button>
+</form> *@
